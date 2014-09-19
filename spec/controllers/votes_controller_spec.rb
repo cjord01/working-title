@@ -6,7 +6,7 @@ describe VotesController do
 		@user = User.create!(name: name, email: Faker::Internet.email(name), password: "password", password_confirmation: "password")
 		session[:user_id] = @user.id
 		@project = Project.create!(name: "Test", initial_text: "Test content", category_id: 1, initiator_id: 1)
-		@version = @project.versions.first
+		@version = Version.create!(project_id: @project.id)
 	end
 	describe '#create' do
 		it 'should create a new vote object' do

@@ -24,14 +24,20 @@ describe Project do
       end
 
       it 'should return the version with the longer branch when the votes are tied' do
-        version_three = Version.create!(project_id: @project.id, contributor_id: 1, previous_version_id: @version_two.id, contribution: "Test Content 3", insertion_index: -1)
-        expect(@project.get_popular_version).to eq(version_three)
+        @version_three = Version.create!(project_id: @project.id, contributor_id: 1, previous_version_id: @version_two.id, contribution: "Test Content 3", insertion_index: -1)
+        Vote.create!(user_id: 2, voteable_id: @version_three.id, voteable_type: "Version", positive: true)
+        Vote.create!(user_id: 2, voteable_id: @version_three.id, voteable_type: "Version", positive: true)
+        Vote.create!(user_id: 2, voteable_id: @version_three.id, voteable_type: "Version", positive: true)
+        expect(@project.get_popular_version).to eq(@version_three)
       end
 
       it 'should return the most recent version when the votes and branch length are tied' do
         version_three = Version.create!(project_id: @project.id, contributor_id: 1, previous_version_id: @version_two.id, contribution: "Test Content 3", insertion_index: -1)
         sleep(1)
         version_four = Version.create!(project_id: @project.id, contributor_id: 1, previous_version_id: @version_two.id, contribution: "Test Content 3", insertion_index: -1)
+        Vote.create!(user_id: 2, voteable_id: version_four.id, voteable_type: "Version", positive: true)
+        Vote.create!(user_id: 2, voteable_id: version_four.id, voteable_type: "Version", positive: true)
+        Vote.create!(user_id: 2, voteable_id: version_four.id, voteable_type: "Version", positive: true)
         expect(@project.get_popular_version).to eq(version_four)
       end
     end

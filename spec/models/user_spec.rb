@@ -29,7 +29,7 @@ describe User do
   end
 
   it 'has a secure password' do
-     name = Faker::Name.name
+    name = Faker::Name.name
     user = User.create!(name: name, email: Faker::Internet.email(name), password: "password", password_confirmation: "password")
     expect(user).to have_secure_password
   end

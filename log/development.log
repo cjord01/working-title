@@ -1,0 +1,1978 @@
+  [1m[36m (17.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.5ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateProjects (20140919145051)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140919145051"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20140919145252)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140919145252"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateVersions (20140919145315)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "versions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "contribution" varchar(255), "contributor_id" integer, "project_id" integer, "previous_version_id" integer, "insertion_index" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140919145315"]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateVotes (20140919150300)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "votes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "positive" boolean, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140919150300"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (69.4ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 19 Sep 2014 15:15:19 UTC +00:00], ["email", "asdas@asd.com"], ["name", "santi"], ["password_digest", "$2a$10$YrkatmR0OII65RX7E4vKm.DqRgVWNfp0qIbys0sUIwSIVqgxYhP2O"], ["updated_at", Fri, 19 Sep 2014 15:15:19 UTC +00:00]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[36m (19.4ms)[0m  [1mCREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "category_id" integer, "initiator_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "versions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "contribution" varchar(255), "contributor_id" integer, "project_id" integer, "previous_version_id" integer, "insertion_index" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "votes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "positive" boolean, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140919150300')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140919145051')[0m
+  [1m[35m (1.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140919145252')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140919145315')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT 1
+  [1m[36mVersion Load (0.3ms)[0m  [1mSELECT "versions".* FROM "versions"[0m
+  [1m[35mVersion Load (0.2ms)[0m  SELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1
+  [1m[36mVersion Load (0.2ms)[0m  [1mSELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1[0m
+  [1m[35mVersion Load (0.3ms)[0m  SELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.8ms)[0m  INSERT INTO "versions" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Fri, 19 Sep 2014 18:11:53 UTC +00:00], ["updated_at", Fri, 19 Sep 2014 18:11:53 UTC +00:00]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mVersion Load (0.4ms)[0m  SELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."voteable_id" = ? AND "votes"."voteable_type" = ?[0m  [[nil, 1], [nil, "Version"]]
+SQLite3::SQLException: no such column: votes.voteable_id: SELECT "votes".* FROM "votes"  WHERE "votes"."voteable_id" = ? AND "votes"."voteable_type" = ?
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.7ms)[0m  INSERT INTO "versions" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Fri, 19 Sep 2014 18:12:59 UTC +00:00], ["updated_at", Fri, 19 Sep 2014 18:12:59 UTC +00:00]]
+  [1m[36m (5.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mVersion Load (0.4ms)[0m  SELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."voteable_id" = ? AND "votes"."voteable_type" = ?[0m  [[nil, 1], [nil, "Version"]]
+SQLite3::SQLException: no such column: votes.voteable_id: SELECT "votes".* FROM "votes"  WHERE "votes"."voteable_id" = ? AND "votes"."voteable_type" = ?
+  [1m[36mVersion Load (0.2ms)[0m  [1mSELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1[0m
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes" WHERE "votes"."voteable_id" = ? AND "votes"."voteable_type" = ?  [[nil, 1], [nil, "Version"]]
+SQLite3::SQLException: no such column: votes.voteable_id: SELECT "votes".* FROM "votes"  WHERE "votes"."voteable_id" = ? AND "votes"."voteable_type" = ?
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (3.2ms)[0m  INSERT INTO "versions" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Fri, 19 Sep 2014 18:17:51 UTC +00:00], ["updated_at", Fri, 19 Sep 2014 18:17:51 UTC +00:00]]
+  [1m[36m (5.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mVersion Load (0.3ms)[0m  SELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."voteable_id" = ? AND "votes"."voteable_type" = ?[0m  [[nil, 1], [nil, "Version"]]
+SQLite3::SQLException: no such column: votes.voteable_id: SELECT "votes".* FROM "votes"  WHERE "votes"."voteable_id" = ? AND "votes"."voteable_type" = ?
+  [1m[36m (113.8ms)[0m  [1mCREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "category_id" integer, "initiator_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (29.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (26.6ms)[0m  [1mCREATE TABLE "versions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "contribution" varchar(255), "contributor_id" integer, "project_id" integer, "previous_version_id" integer, "insertion_index" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.6ms)[0m  CREATE TABLE "votes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "positive" boolean, "voteable_id" integer, "voteable_type" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140919150300')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140919145051')[0m
+  [1m[35m (1.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140919145252')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140919145315')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.9ms)[0m  INSERT INTO "versions" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Fri, 19 Sep 2014 18:18:59 UTC +00:00], ["updated_at", Fri, 19 Sep 2014 18:18:59 UTC +00:00]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mVersion Load (0.4ms)[0m  SELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."voteable_id" = ? AND "votes"."voteable_type" = ?[0m  [["voteable_id", 1], ["voteable_type", "Version"]]
+  [1m[35mVersion Load (0.4ms)[0m  SELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "votes" WHERE "votes"."voteable_id" = ? AND "votes"."voteable_type" = ? AND "votes"."positive" = 't'[0m  [["voteable_id", 1], ["voteable_type", "Version"]]
+  [1m[35mVersion Load (0.3ms)[0m  SELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "votes" WHERE "votes"."voteable_id" = ? AND "votes"."voteable_type" = ? AND "votes"."positive" = 't'[0m  [["voteable_id", 1], ["voteable_type", "Version"]]
+  [1m[35mVersion Load (0.4ms)[0m  SELECT "versions".* FROM "versions"
+  [1m[36mVersion Load (1.3ms)[0m  [1mSELECT "versions".* FROM "versions"[0m
+  [1m[35mVersion Load (0.4ms)[0m  SELECT "versions".* FROM "versions"
+  [1m[36mVersion Load (0.4ms)[0m  [1mSELECT "versions".* FROM "versions"[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "votes" WHERE "votes"."voteable_id" = ? AND "votes"."voteable_type" = ? AND "votes"."positive" = 't'  [["voteable_id", 1], ["voteable_type", "Version"]]
+  [1m[36mVersion Load (0.2ms)[0m  [1mSELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "versions"
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (3.8ms)[0m  INSERT INTO "versions" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Fri, 19 Sep 2014 18:41:00 UTC +00:00], ["updated_at", Fri, 19 Sep 2014 18:41:00 UTC +00:00]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "versions" ("created_at", "previous_version_id", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Fri, 19 Sep 2014 18:41:53 UTC +00:00], ["previous_version_id", 2], ["updated_at", Fri, 19 Sep 2014 18:41:53 UTC +00:00]]
+  [1m[35m (5.6ms)[0m  commit transaction
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT 1[0m
+  [1m[35mProject Load (0.4ms)[0m  SELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT 1
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT 1[0m
+  [1m[35mVersion Load (0.3ms)[0m  SELECT "versions".* FROM "versions"
+  [1m[36mVersion Load (0.3ms)[0m  [1mSELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1[0m
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "category_id" integer, "initiator_id" integer, "initial_text" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "versions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "contribution" varchar(255), "contributor_id" integer, "project_id" integer, "previous_version_id" integer, "insertion_index" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "votes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "positive" boolean, "voteable_id" integer, "voteable_type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (20.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (1.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140919194043')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140919145051')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140919145252')[0m
+  [1m[35m (1.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140919145315')
+  [1m[36m (1.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140919150300')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (3.5ms)[0m  [1mINSERT INTO "projects" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Fri, 19 Sep 2014 20:06:03 UTC +00:00], ["updated_at", Fri, 19 Sep 2014 20:06:03 UTC +00:00]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "versions" ("created_at", "project_id", "updated_at") VALUES (?, ?, ?)  [["created_at", Fri, 19 Sep 2014 20:06:23 UTC +00:00], ["project_id", 1], ["updated_at", Fri, 19 Sep 2014 20:06:23 UTC +00:00]]
+  [1m[36m (5.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.4ms)[0m  SELECT "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT 1
+  [1m[36mVersion Load (0.2ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ? ORDER BY "versions"."id" ASC LIMIT 1[0m  [["project_id", 1]]
+  [1m[36mVersion Load (0.2ms)[0m  [1mSELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1[0m
+  [1m[35mVersion Load (0.4ms)[0m  SELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1
+  [1m[36mVersion Load (0.5ms)[0m  [1mSELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1[0m
+  [1m[36mVersion Load (0.2ms)[0m  [1mSELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1[0m
+  [1m[35mVersion Load (0.3ms)[0m  SELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1
+  [1m[36mVersion Load (0.3ms)[0m  [1mSELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1[0m
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (3.8ms)[0m  INSERT INTO "versions" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Fri, 19 Sep 2014 20:44:04 UTC +00:00], ["updated_at", Fri, 19 Sep 2014 20:44:04 UTC +00:00]]
+  [1m[36m (5.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mVersion Load (0.4ms)[0m  SELECT "versions".* FROM "versions" ORDER BY "versions"."id" ASC LIMIT 1
+
+
+Started GET "/" for 127.0.0.1 at 2014-09-19 15:47:49 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (12.3ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+Completed 200 OK in 755ms (Views: 754.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:47:50 -0500
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-19 15:47:53 -0500
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (7.1ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 23ms (Views: 13.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-09-19 15:47:56 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 6ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-19 15:47:57 -0500
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/signin" for 127.0.0.1 at 2014-09-19 15:47:58 -0500
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 23ms (Views: 8.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2014-09-19 15:48:00 -0500
+Processing by UsersController#new as HTML
+  Rendered users/_new_form.html.erb (268.6ms)
+  Rendered users/new.html.erb within layouts/application (270.9ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 279ms (Views: 278.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2014-09-19 15:48:23 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "user"=>{"name"=>"santi", "email"=>"santi@santi.santi", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create User"}
+  [1m[35m (0.1ms)[0m  begin transaction
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (3.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 19 Sep 2014 20:48:24 UTC +00:00], ["email", "santi@santi.santi"], ["name", "santi"], ["password_digest", "$2a$10$m3h87y2m.bqNMFzLEY9yAOblQgG64.Y41NgMEjtoSzmYGtCLZNA9i"], ["updated_at", Fri, 19 Sep 2014 20:48:24 UTC +00:00]]
+  [1m[35m (1.7ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 82ms (ActiveRecord: 5.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-09-19 15:48:24 -0500
+Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered welcome/index.html.erb within layouts/application (4.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.3ms)
+Completed 200 OK in 11ms (Views: 10.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-19 15:48:26 -0500
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (1.7ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.6ms)
+Completed 200 OK in 12ms (Views: 10.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2014-09-19 15:48:27 -0500
+Processing by ProjectsController#new as HTML
+  [1m[35mCategory Load (0.2ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered projects/_form.html.erb (51.2ms)
+  Rendered projects/new.html.erb within layouts/application (52.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.6ms)
+Completed 200 OK in 63ms (Views: 59.8ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/projects" for 127.0.0.1 at 2014-09-19 15:48:37 -0500
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "project"=>{"name"=>"tests", "initial_text"=>"testestes"}, "commit"=>"Create Project"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "projects" ("created_at", "initial_text", "initiator_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 19 Sep 2014 20:48:37 UTC +00:00], ["initial_text", "testestes"], ["initiator_id", 1], ["name", "tests"], ["updated_at", Fri, 19 Sep 2014 20:48:37 UTC +00:00]]
+  [1m[35m (5.7ms)[0m  commit transaction
+  [1m[36mVersion Load (0.2ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ? ORDER BY "versions"."id" ASC LIMIT 1[0m  [["project_id", 2]]
+Completed 500 Internal Server Error in 68ms
+
+ActionController::UrlGenerationError (No route matches {:project_id=>#<Project id: 2, name: "tests", category_id: nil, initiator_id: 1, initial_text: "testestes", created_at: "2014-09-19 20:48:37", updated_at: "2014-09-19 20:48:37">, :id=>nil} missing required keys: [:id]):
+  app/controllers/projects_controller.rb:15:in `create'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (20.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2014-09-19 15:49:04 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."initiator_id" = ?  [["initiator_id", 1]]
+  Rendered users/show.html.erb within layouts/application (4.5ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.2ms)
+Completed 200 OK in 13ms (Views: 10.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/projects/2" for 127.0.0.1 at 2014-09-19 15:49:07 -0500
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mVersion Load (0.2ms)[0m  SELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?  [["project_id", 2]]
+  Rendered projects/show.html.erb within layouts/application (42.3ms)
+Completed 500 Internal Server Error in 51ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    1: <div class="container">
+    2:   <h3><%= @project.name %></h3>
+    3:   <h5><%= @project.category.name %></h5>
+    4:   <%= render 'votes/form_projects' %>
+    5: </div>
+  app/views/projects/show.html.erb:3:in `_app_views_projects_show_html_erb__2610903422094522812_70311200729080'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (10.8ms)
+
+
+Started GET "/users/1/edit" for 127.0.0.1 at 2014-09-19 15:49:15 -0500
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered users/_edit_form.html.erb (2.8ms)
+  Rendered users/edit.html.erb within layouts/application (5.1ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.7ms)
+Completed 200 OK in 16ms (Views: 13.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-09-19 15:49:18 -0500
+Processing by WelcomeController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered welcome/index.html.erb within layouts/application (1.5ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.6ms)
+Completed 200 OK in 10ms (Views: 9.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-19 15:49:40 -0500
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.3ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (1.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (2.0ms)
+Completed 200 OK in 12ms (Views: 11.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2014-09-19 15:49:41 -0500
+Processing by ProjectsController#new as HTML
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered projects/_form.html.erb (1.5ms)
+  Rendered projects/new.html.erb within layouts/application (2.1ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.5ms)
+Completed 200 OK in 11ms (Views: 9.9ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/projects" for 127.0.0.1 at 2014-09-19 15:49:45 -0500
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "project"=>{"name"=>"", "initial_text"=>""}, "commit"=>"Create Project"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "projects" ("created_at", "initial_text", "initiator_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 19 Sep 2014 20:49:45 UTC +00:00], ["initial_text", ""], ["initiator_id", 1], ["name", ""], ["updated_at", Fri, 19 Sep 2014 20:49:45 UTC +00:00]]
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mVersion Load (0.2ms)[0m  SELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ? ORDER BY "versions"."id" ASC LIMIT 1  [["project_id", 3]]
+Completed 500 Internal Server Error in 9ms
+
+ActionController::UrlGenerationError (No route matches {:project_id=>#<Project id: 3, name: "", category_id: nil, initiator_id: 1, initial_text: "", created_at: "2014-09-19 20:49:45", updated_at: "2014-09-19 20:49:45">, :id=>nil} missing required keys: [:id]):
+  app/controllers/projects_controller.rb:15:in `create'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (17.8ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-19 15:49:57 -0500
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (1.4ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (2.2ms)
+Completed 200 OK in 11ms (Views: 10.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-19 15:50:01 -0500
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (1.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.4ms)
+Completed 200 OK in 9ms (Views: 8.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2014-09-19 15:50:03 -0500
+Processing by ProjectsController#new as HTML
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered projects/_form.html.erb (2.1ms)
+  Rendered projects/new.html.erb within layouts/application (2.7ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.4ms)
+Completed 200 OK in 11ms (Views: 9.9ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/projects" for 127.0.0.1 at 2014-09-19 15:50:32 -0500
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "project"=>{"name"=>"this thing", "initial_text"=>"textexttext"}, "commit"=>"Create Project"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "projects" ("created_at", "initial_text", "initiator_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 19 Sep 2014 20:50:32 UTC +00:00], ["initial_text", "textexttext"], ["initiator_id", 1], ["name", "this thing"], ["updated_at", Fri, 19 Sep 2014 20:50:32 UTC +00:00]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mVersion Load (0.1ms)[0m  SELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ? ORDER BY "versions"."id" ASC LIMIT 1  [["project_id", 4]]
+Completed 500 Internal Server Error in 9ms
+
+ActionController::UrlGenerationError (No route matches {:project_id=>#<Project id: 4, name: "this thing", category_id: nil, initiator_id: 1, initial_text: "textexttext", created_at: "2014-09-19 20:50:32", updated_at: "2014-09-19 20:50:32">, :id=>nil} missing required keys: [:id]):
+  app/controllers/projects_controller.rb:15:in `create'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (55.8ms)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+Processing by ProjectsController#new as HTML
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered projects/_form.html.erb (6.6ms)
+  Rendered projects/new.html.erb within layouts/application (7.2ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (12.5ms)
+Completed 200 OK in 33ms (Views: 25.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:39 -0500
+
+
+Started POST "/projects" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "project"=>{"name"=>"sdasd", "initial_text"=>"asdasd"}, "commit"=>"Create Project"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "projects" ("created_at", "initial_text", "initiator_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 19 Sep 2014 20:52:42 UTC +00:00], ["initial_text", "asdasd"], ["initiator_id", 1], ["name", "sdasd"], ["updated_at", Fri, 19 Sep 2014 20:52:42 UTC +00:00]]
+  [1m[36m (7.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mVersion Load (0.1ms)[0m  SELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ? ORDER BY "versions"."id" ASC LIMIT 1  [["project_id", 5]]
+Redirected to http://localhost:3000/projects/5/versions
+Completed 302 Found in 21ms (ActiveRecord: 8.2ms)
+
+
+Started GET "/projects/5/versions" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+Processing by VersionsController#index as HTML
+  Parameters: {"project_id"=>"5"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "5"]]
+  [1m[35mVersion Load (0.2ms)[0m  SELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?  [["project_id", 5]]
+  Rendered versions/index.html.erb within layouts/application (1.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.6ms)
+Completed 200 OK in 11ms (Views: 9.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:52:42 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered welcome/index.html.erb within layouts/application (1.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.7ms)
+Completed 200 OK in 12ms (Views: 11.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:10 -0500
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (1.3ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.5ms)
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:12 -0500
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2014-09-19 15:53:14 -0500
+Processing by ProjectsController#new as HTML
+  [1m[35mCategory Load (0.2ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered projects/_form.html.erb (1.9ms)
+  Rendered projects/new.html.erb within layouts/application (2.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.3ms)
+Completed 200 OK in 11ms (Views: 10.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:14 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:14 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:14 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:14 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:14 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:14 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:14 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:14 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:15 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:15 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:15 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:15 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:15 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:15 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:15 -0500
+
+
+Started POST "/projects" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "project"=>{"name"=>"Poetry", "initial_text"=>"Boo, Ahh!"}, "commit"=>"Create Project"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "projects" ("created_at", "initial_text", "initiator_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 19 Sep 2014 20:53:42 UTC +00:00], ["initial_text", "Boo, Ahh!"], ["initiator_id", 1], ["name", "Poetry"], ["updated_at", Fri, 19 Sep 2014 20:53:42 UTC +00:00]]
+  [1m[35m (1.7ms)[0m  commit transaction
+  [1m[36mVersion Load (0.2ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ? ORDER BY "versions"."id" ASC LIMIT 1[0m  [["project_id", 6]]
+Redirected to http://localhost:3000/projects/6/versions
+Completed 302 Found in 8ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/projects/6/versions" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+Processing by VersionsController#index as HTML
+  Parameters: {"project_id"=>"6"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "6"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 6]]
+  Rendered versions/index.html.erb within layouts/application (0.6ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.4ms)
+Completed 200 OK in 9ms (Views: 7.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:42 -0500
+
+
+Started GET "/users/1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."initiator_id" = ?  [["initiator_id", 1]]
+  Rendered users/show.html.erb within layouts/application (3.2ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.6ms)
+Completed 200 OK in 12ms (Views: 10.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:44 -0500
+
+
+Started GET "/users/1/edit" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered users/_edit_form.html.erb (1.7ms)
+  Rendered users/edit.html.erb within layouts/application (2.6ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.9ms)
+Completed 200 OK in 11ms (Views: 10.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:50 -0500
+
+
+Started PATCH "/users/1" for 127.0.0.1 at 2014-09-19 15:53:52 -0500
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "user"=>{"name"=>"santi", "email"=>"santi@santi.santi"}, "commit"=>"Update User", "id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2014-09-19 15:53:52 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."initiator_id" = ?[0m  [["initiator_id", 1]]
+  Rendered users/show.html.erb within layouts/application (2.8ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.4ms)
+Completed 200 OK in 11ms (Views: 9.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:52 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:52 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:52 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:52 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:52 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:52 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:53:52 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:52 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:53 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:53 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:53 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:53 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:53 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:53 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:53:53 -0500
+
+
+Started GET "/projects/6" for 127.0.0.1 at 2014-09-19 15:53:54 -0500
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "6"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 6]]
+  Rendered projects/show.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    1: <div class="container">
+    2:   <h3><%= @project.name %></h3>
+    3:   <h5><%= @project.category.name %></h5>
+    4:   <%= render 'votes/form_projects' %>
+    5: </div>
+  app/views/projects/show.html.erb:3:in `_app_views_projects_show_html_erb__2610903422094522812_70311200729080'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (12.0ms)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (4.1ms)[0m  INSERT INTO "categories" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Fri, 19 Sep 2014 20:54:29 UTC +00:00], ["updated_at", Fri, 19 Sep 2014 20:54:29 UTC +00:00]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mCategory Load (0.3ms)[0m  SELECT "categories".* FROM "categories" ORDER BY "categories"."id" ASC LIMIT 1
+  [1m[36mCategory Load (0.4ms)[0m  [1mSELECT "categories".* FROM "categories" ORDER BY "categories"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/categories" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+Processing by CategoriesController#index as HTML
+  [1m[35mCategory Load (0.2ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered categories/index.html.erb within layouts/application (5.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.7ms)
+Completed 200 OK in 55ms (Views: 53.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:01 -0500
+
+
+Started GET "/categories/1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+Processing by CategoriesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."category_id" = ?  [["category_id", 1]]
+  Rendered categories/show.html.erb within layouts/application (2.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.6ms)
+Completed 200 OK in 12ms (Views: 10.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:30 -0500
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (1.6ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.9ms)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:32 -0500
+
+
+Started GET "/projects/6" for 127.0.0.1 at 2014-09-19 15:55:34 -0500
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "6"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 6]]
+  Rendered projects/show.html.erb within layouts/application (0.6ms)
+Completed 500 Internal Server Error in 5ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    1: <div class="container">
+    2:   <h3><%= @project.name %></h3>
+    3:   <h5><%= @project.category.name %></h5>
+    4:   <%= render 'votes/form_projects' %>
+    5: </div>
+  app/views/projects/show.html.erb:3:in `_app_views_projects_show_html_erb__2610903422094522812_70311200729080'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (11.2ms)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+Processing by ProjectsController#new as HTML
+  [1m[35mCategory Load (0.2ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered projects/_form.html.erb (3.2ms)
+  Rendered projects/new.html.erb within layouts/application (4.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.6ms)
+Completed 200 OK in 13ms (Views: 11.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:36 -0500
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+Processing by ProjectsController#new as HTML
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered projects/_form.html.erb (2.0ms)
+  Rendered projects/new.html.erb within layouts/application (2.6ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.6ms)
+Completed 200 OK in 11ms (Views: 9.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:55:48 -0500
+  [1m[35mCategory Load (0.4ms)[0m  SELECT "categories".* FROM "categories"
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Fri, 19 Sep 2014 20:56:25 UTC +00:00], ["name", "poetry"], ["updated_at", Fri, 19 Sep 2014 20:56:25 UTC +00:00]]
+  [1m[36m (4.6ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+Processing by ProjectsController#new as HTML
+  [1m[35mCategory Load (0.3ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered projects/_form.html.erb (1.5ms)
+  Rendered projects/new.html.erb within layouts/application (2.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.3ms)
+Completed 200 OK in 11ms (Views: 9.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:27 -0500
+
+
+Started POST "/projects" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+Processing by ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "project"=>{"name"=>"poetry 5", "category_id"=>"2", "initial_text"=>"roses are red, violets are violet"}, "commit"=>"Create Project"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "projects" ("category_id", "created_at", "initial_text", "initiator_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category_id", 2], ["created_at", Fri, 19 Sep 2014 20:56:41 UTC +00:00], ["initial_text", "roses are red, violets are violet"], ["initiator_id", 1], ["name", "poetry 5"], ["updated_at", Fri, 19 Sep 2014 20:56:41 UTC +00:00]]
+  [1m[35m (1.7ms)[0m  commit transaction
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ? ORDER BY "versions"."id" ASC LIMIT 1[0m  [["project_id", 7]]
+Redirected to http://localhost:3000/projects/7/versions
+Completed 302 Found in 10ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/projects/7/versions" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+Processing by VersionsController#index as HTML
+  Parameters: {"project_id"=>"7"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+  Rendered versions/index.html.erb within layouts/application (0.5ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.4ms)
+Completed 200 OK in 9ms (Views: 7.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:41 -0500
+
+
+Started GET "/projects" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (1.9ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.4ms)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:56:43 -0500
+
+
+Started GET "/projects/7" for 127.0.0.1 at 2014-09-19 15:56:44 -0500
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mVersion Load (0.2ms)[0m  SELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?  [["project_id", 7]]
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT "categories".* FROM "categories" WHERE "categories"."id" = ? ORDER BY "categories"."id" ASC LIMIT 1[0m  [["id", 2]]
+  Rendered votes/_form_projects.html.erb (91.3ms)
+  Rendered projects/show.html.erb within layouts/application (95.5ms)
+Completed 500 Internal Server Error in 101ms
+
+ActionView::Template::Error (undefined method `votes' for nil:NilClass):
+     5:   <%= f.submit "Upvote" %>
+     6: <% end %>
+     7: 
+     8: <div class="score"><%= @project.calculate_vote_score %></div>
+     9: 
+    10: <%= form_for @vote, html: {id: "downvote"} do |f| %>
+    11:   <%= f.hidden_field :voteable_id, :value => "#{@project.id}" %>
+  app/models/project.rb:19:in `calculate_vote_score'
+  app/views/votes/_form_projects.html.erb:8:in `_app_views_votes__form_projects_html_erb___1912389612049180598_70311195216500'
+  app/views/projects/show.html.erb:4:in `_app_views_projects_show_html_erb__2610903422094522812_70311200729080'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (10.9ms)
+
+
+Started GET "/projects/7" for 127.0.0.1 at 2014-09-19 15:57:49 -0500
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.2ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT "categories".* FROM "categories" WHERE "categories"."id" = ? ORDER BY "categories"."id" ASC LIMIT 1  [["id", 2]]
+  Rendered votes/_form_projects.html.erb (7.3ms)
+  Rendered projects/show.html.erb within layouts/application (15.4ms)
+Completed 500 Internal Server Error in 35ms
+
+ActionView::Template::Error (undefined method `calculate_vote_score' for #<Project:0x007fe5347240b8>):
+     5:   <%= f.submit "Upvote" %>
+     6: <% end %>
+     7: 
+     8: <div class="score"><%= @project.calculate_vote_score %></div>
+     9: 
+    10: <%= form_for @vote, html: {id: "downvote"} do |f| %>
+    11:   <%= f.hidden_field :voteable_id, :value => "#{@project.id}" %>
+  app/views/votes/_form_projects.html.erb:8:in `_app_views_votes__form_projects_html_erb___1912389612049180598_70311195216500'
+  app/views/projects/show.html.erb:4:in `_app_views_projects_show_html_erb__2610903422094522812_70311200729080'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (11.8ms)
+
+
+Started GET "/projects/7" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mVersion Load (0.2ms)[0m  SELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?  [["project_id", 7]]
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT "categories".* FROM "categories" WHERE "categories"."id" = ? ORDER BY "categories"."id" ASC LIMIT 1[0m  [["id", 2]]
+  Rendered votes/_form_projects.html.erb (7.4ms)
+  Rendered projects/show.html.erb within layouts/application (17.6ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (12.7ms)
+Completed 200 OK in 54ms (Views: 34.8ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:34 -0500
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:38 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"true"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "votes" ("created_at", "positive", "updated_at", "user_id", "voteable_id", "voteable_type") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Fri, 19 Sep 2014 20:58:38 UTC +00:00], ["positive", true], ["updated_at", Fri, 19 Sep 2014 20:58:38 UTC +00:00], ["user_id", 1], ["voteable_id", 7], ["voteable_type", "Project"]]
+  [1m[36m (8.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+Completed 200 OK in 20ms (Views: 0.1ms | ActiveRecord: 9.2ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:40 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"true"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:47 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"true"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.2ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:47 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"true"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mVote Load (0.1ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:47 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"true"}}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:47 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"true"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mVote Load (0.1ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:47 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"true"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/projects/7" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT "categories".* FROM "categories" WHERE "categories"."id" = ? ORDER BY "categories"."id" ASC LIMIT 1  [["id", 2]]
+  Rendered votes/_form_projects.html.erb (1.9ms)
+  Rendered projects/show.html.erb within layouts/application (3.6ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.4ms)
+Completed 200 OK in 13ms (Views: 10.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:48 -0500
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"true"}}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mVersion Load (0.1ms)[0m  SELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?  [["project_id", 7]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"true"}}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mVote Load (0.1ms)[0m  SELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mVersion Load (0.1ms)[0m  SELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?  [["project_id", 7]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"true"}}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mVote Load (0.1ms)[0m  SELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mVersion Load (0.1ms)[0m  SELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?  [["project_id", 7]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"true"}}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mVote Load (0.1ms)[0m  SELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mVersion Load (0.1ms)[0m  SELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?  [["project_id", 7]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"true"}}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mVote Load (0.1ms)[0m  SELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mVersion Load (0.1ms)[0m  SELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?  [["project_id", 7]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/projects/7" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mVersion Load (0.1ms)[0m  SELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?  [["project_id", 7]]
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT "categories".* FROM "categories" WHERE "categories"."id" = ? ORDER BY "categories"."id" ASC LIMIT 1[0m  [["id", 2]]
+  Rendered votes/_form_projects.html.erb (1.6ms)
+  Rendered projects/show.html.erb within layouts/application (3.5ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered layouts/_header.html.erb (1.6ms)
+Completed 200 OK in 13ms (Views: 10.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:49 -0500
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:50 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"false"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mVote Load (0.1ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:51 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"false"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mVote Load (0.1ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:51 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"true"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mVote Load (0.1ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+Completed 200 OK in 31ms (Views: 0.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:51 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"false"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"true"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mVote Load (0.1ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/votes" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+Processing by VotesController#create as */*
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hpuO9j74qJ3i/dgg7OZ9t6044wYPL7eR/ps1EzbA3HI=", "vote"=>{"voteable_id"=>"7", "voteable_type"=>"Project", "positive"=>"false"}}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mVote Load (0.1ms)[0m  [1mSELECT "votes".* FROM "votes" WHERE "votes"."user_id" = 1 AND "votes"."voteable_id" = 7 AND "votes"."voteable_type" = 'Project'[0m
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.1ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/projects/7" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mVersion Load (0.2ms)[0m  [1mSELECT "versions".* FROM "versions" WHERE "versions"."project_id" = ?[0m  [["project_id", 7]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT "categories".* FROM "categories" WHERE "categories"."id" = ? ORDER BY "categories"."id" ASC LIMIT 1  [["id", 2]]
+  Rendered votes/_form_projects.html.erb (1.9ms)
+  Rendered projects/show.html.erb within layouts/application (3.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered layouts/_header.html.erb (2.0ms)
+Completed 200 OK in 14ms (Views: 10.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/general.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+
+
+Started GET "/assets/versions.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+
+
+Started GET "/assets/categories.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+
+
+Started GET "/assets/votes.css?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+
+
+Started GET "/assets/projects.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+
+
+Started GET "/assets/versions.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+
+
+Started GET "/assets/votes.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-09-19 15:58:52 -0500

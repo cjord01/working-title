@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.create(project_params)
     # Replaced with database callback and validations:
     # @project.versions.create!(contributor: @project.initiator, contribution: params[:initial_text], insertion_index: -1)
-    redirect_to project_version_path(@project, @project.versions.first)
+    redirect_to project_versions_path(@project, @project.versions.first)
   end
 
   def show
